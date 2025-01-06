@@ -40,18 +40,21 @@ class Product:
                 raise Exception("not enough quantity in the warehouse°")
 
 def is_int_type_check(num):
+
     if type(num) is int:
         return True
     else:
         raise Exception("please only enter an integer!")
 
 def is_int_or_float_type_check(num):
+
     if type(num) is int or float:
         return True
     else:
         raise Exception("please only enter an integer or a float!")
 
 def is_str_type_check(input_str):
+
     if type(input_str) is str:
         return True
     else:
