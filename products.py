@@ -11,68 +11,68 @@ class Product:
         bool active = True (default)
         """
         if is_int_type_check(quantity):
-            self.quantity = quantity
+            self._quantity = quantity
         elif quantity == 0:
             raise Exception("please enter a quantity larger than 0!")
         if is_int_or_float_type_check(price):
-            self.price = price
+            self._price = price
         if is_str_type_check(name):
-            self.name = name
-        self.active = True
+            self._name = name
+        self._active = True
 
     def get_quantity(self):
         """
         returns the quantity of the product
         """
-        return self.quantity
+        return self._quantity
 
     def set_quantity(self, quantity):
         """
         set the quantity of the product
         """
         if is_int_type_check(quantity):
-            self.quantity = quantity
+            self._quantity = quantity
 
     def is_active(self):
         """
         return either True or False for whether a product is active or not
         """
-        return self.active
+        return self._active
 
     def activate(self):
         """
         activate the product
         set the active attribute of the product to True
         """
-        self.active = True
+        self._active = True
 
     def deactivate(self):
         """
         deactivate the product
         set the active attribute of the product to False
         """
-        self.active = False
+        self._active = False
 
     def show(self):
         """
         return the information of the product
         """
-        return f"{self.name}, Price: {self.price}, Quantity: {self.quantity}"
+        return f"{self._name}, Price: {self._price}, Quantity: {self._quantity}"
 
     def buy(self, quantity):
         """
         reduce the total quantity of the product by the quantity passed as argument
         """
         if is_int_type_check(quantity):
-            if 0 < quantity <= self.quantity:
-                self.quantity -= quantity
-                if self.quantity == 0:
+            if 0 < quantity <= self._quantity:
+                self._quantity -= quantity
+                if self._quantity == 0:
                     self.deactivate()
-                return quantity * self.price
+                return quantity * self._price
             elif quantity < 0:
                 raise Exception("please give a quantity larger than 0!")
             else:
-                raise Exception(f"not enough {self.name} in the warehouse")
+                raise Exception(f"not enough {self._name} in the warehouse")
 
 def is_int_type_check(num):
     """

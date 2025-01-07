@@ -10,15 +10,15 @@ class Store:
         """
         initialize the store with a list of product objects
         """
-        self.products_list = products_list
+        self._products_list = products_list
 
     def add_product(self, product):
         """
         add a product to the store's products_list
         """
         if is_product_type_check(product):
-            if product not in self.products_list:
-                self.products_list.append(product)
+            if product not in self._products_list:
+                self._products_list.append(product)
             else:
                 raise Exception("product is already in the store")
 
@@ -26,8 +26,8 @@ class Store:
         """
         remove a product from the store's products_list
         """
-        if product in self.products_list:
-            self.products_list.remove(product)
+        if product in self._products_list:
+            self._products_list.remove(product)
 
     def get_total_quantity(self):
         """
@@ -35,7 +35,7 @@ class Store:
         return a sum of all product's quantities
         """
         total_quantity = 0
-        for product in self.products_list:
+        for product in self._products_list:
             total_quantity += product.get_quantity()
         return total_quantity
 
@@ -44,7 +44,7 @@ class Store:
         return a list of all products in the store
         """
         active_products_list = []
-        for product in self.products_list:
+        for product in self._products_list:
             if product.is_active():
                 active_products_list.append(product)
         return active_products_list
@@ -59,7 +59,7 @@ class Store:
             for order_tuple in shopping_list:
                 if type(order_tuple) is tuple:
                     if is_product_type_check(order_tuple[0]) and is_int_type_check(order_tuple[1]):
-                        if order_tuple[0] in self.products_list:
+                        if order_tuple[0] in self._products_list:
                             order_price += order_tuple[0].buy(order_tuple[1])
                         else:
                             raise Exception("product doesn't exist in the store")
