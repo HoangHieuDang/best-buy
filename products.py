@@ -31,13 +31,15 @@ class Product:
 
     def buy(self, quantity):
         if is_int_type_check(quantity):
-            if quantity <= self.quantity:
-                self.quantity = self.quantity - quantity
+            if quantity > 0 and quantity <= self.quantity:
+                self.quantity -= quantity
+                #if self.quantity == 0:
+                    #self.deactivate()
                 return quantity * self.price
-            elif quantity == 0:
+            elif quantity < 0:
                 raise Exception("please give a quantity larger than 0!")
             else:
-                raise Exception("not enough quantity in the warehouse°")
+                raise Exception(f"not enough {self.name} in the warehouse")
 
 def is_int_type_check(num):
 

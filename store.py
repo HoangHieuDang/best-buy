@@ -17,7 +17,10 @@ class Store:
             self.products_list.remove(product)
 
     def get_total_quantity(self):
-        return len(self.products_list)
+        total_quantity = 0
+        for product in self.products_list:
+            total_quantity += product.get_quantity()
+        return total_quantity
 
     def get_all_products(self):
         active_products_list = []
@@ -28,6 +31,7 @@ class Store:
 
     def order(self, shopping_list):
         order_price = 0
+        #shopping_list is a list of tuples, each tuple has 2 elements: product_name, amount
         if len(shopping_list) > 0:
             for order_tuple in shopping_list:
                 if type(order_tuple) is tuple:
