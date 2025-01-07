@@ -13,7 +13,14 @@ ui_display = """
 
 
 def start(input_store):
+    """
+    The main operation of the store including user interface, handling of orders and product listing
+    """
+
     def list_all_products_handler():
+        """
+        handles the product listing feature from the menu dispatcher
+        """
         print("------list all products-------")
         products_list = input_store.get_all_products()
         index_num = 1
@@ -23,16 +30,22 @@ def start(input_store):
         print("------------------------------")
 
     def total_amount_handler():
+        """
+          handles the feature to display the total amount of items in the store
+        """
         print("-----Total Amount of Items----")
         print(f"Total of {input_store.get_total_quantity()} items in input_store")
         print("------------------------------")
 
     def order_handler():
+        """
+          handles the ordering process in the store
+        """
 
         print("------Order processing-------")
         print("When you want to finish order, enter empty text.")
         list_all_products_handler()
-        #Create a dummy_products_list to show the user what the shop list looks like after ordering
+        # Create a dummy_products_list to show the user what the shop list looks like after ordering
         products_list = input_store.get_all_products()
         order_list = []
         while True:
@@ -81,6 +94,9 @@ def start(input_store):
                 print("Invalid input! " + str(err_msg))
 
     def quit_handler():
+        """
+          escape the program
+        """
         print("Thanks for visiting our store, goodbye!")
         sys.exit()
 
@@ -90,7 +106,7 @@ def start(input_store):
         "3": order_handler,
         "4": quit_handler
     }
-
+    # Handle the user input when choosing an option available on the menu dispatcher (1 to 4)
     while True:
         try:
             user_input = int(input(ui_display + "\n"))
@@ -113,6 +129,8 @@ product_list = [products.Product("MacBook Air M2", price=1450, quantity=100),
                 products.Product("Google Pixel 7", price=500, quantity=250)
                 ]
 best_buy = store.Store(product_list)
+
+# Main program starts here
 
 if __name__ == "__main__":
     while True:

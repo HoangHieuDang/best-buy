@@ -1,28 +1,48 @@
 from products import *
 
+
 class Store:
+    """
+    class Store handles all information of a store object. This class is also a composition of class Products
+    """
 
     def __init__(self, products_list):
+        """
+        initialize the store with a list of product objects
+        """
         self.products_list = products_list
 
     def add_product(self, product):
+        """
+        add a product to the store's products_list
+        """
         if is_product_type_check(product):
             if product not in self.products_list:
                 self.products_list.append(product)
             else:
-                raise Exception ("product is already in the store")
+                raise Exception("product is already in the store")
 
     def remove_product(self, product):
+        """
+        remove a product from the store's products_list
+        """
         if product in self.products_list:
             self.products_list.remove(product)
 
     def get_total_quantity(self):
+        """
+        get the total quantity of all products in the store
+        return a sum of all product's quantities
+        """
         total_quantity = 0
         for product in self.products_list:
             total_quantity += product.get_quantity()
         return total_quantity
 
     def get_all_products(self):
+        """
+        return a list of all products in the store
+        """
         active_products_list = []
         for product in self.products_list:
             if product.is_active():
@@ -30,8 +50,11 @@ class Store:
         return active_products_list
 
     def order(self, shopping_list):
+        """
+        Handle the ordering process in the store
+        """
         order_price = 0
-        #shopping_list is a list of tuples, each tuple has 2 elements: product_name, amount
+        # shopping_list is a list of tuples, each tuple has 2 elements: product_name, amount
         if len(shopping_list) > 0:
             for order_tuple in shopping_list:
                 if type(order_tuple) is tuple:
@@ -46,7 +69,11 @@ class Store:
         else:
             raise Exception("empty shopping list")
 
+
 def is_product_type_check(product):
+    """
+    check whether a variable points to an object of class Product
+    """
     if type(product) is Product:
         return True
     else:
