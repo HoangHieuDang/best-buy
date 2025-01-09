@@ -6,3 +6,6 @@ Soda
 
 Pasta
 Chicken
+
+Cheese
+Nachos
